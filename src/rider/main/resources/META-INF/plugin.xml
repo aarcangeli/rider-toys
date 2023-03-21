@@ -1,9 +1,8 @@
 <idea-plugin require-restart="true">
-  <id>com.jetbrains.rider.plugins.ridertools</id>
-  <name>RiderTools</name>
+  <id>com.github.aarcangeli.ridertools</id>
+  <name>Rider-Tools</name>
   <version>_PLACEHOLDER_</version>
-  <vendor url="https://project-url">Author</vendor>
-  <idea-version since-build="_PLACEHOLDER_" until-build="_PLACEHOLDER_" />
+  <vendor email="alessandroarcangeli.rm@gmail.com" url="https://github.com/aarcangeli">Alessandro Arcangeli</vendor>
   <depends>com.intellij.modules.rider</depends>
 
   <!-- until-build not specified on purpose -->
