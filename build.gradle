@@ -124,6 +124,7 @@ intellij {
     version = "${ProductVersion}"
     downloadSources = false
     instrumentCode = false
+    updateSinceUntilBuild = false
     // TODO: add plugins
     // plugins = ["uml", "com.jetbrains.ChooseRuntime:1.0.9"]
 }
