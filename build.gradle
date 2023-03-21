@@ -1,13 +1,28 @@
 // Reference https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/gradle_guide.html
-import org.apache.tools.ant.taskdefs.condition.Os
+
+buildscript {
+    repositories {
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
+    }
+    dependencies {
+        classpath("org.jetbrains.intellij.plugins:gradle-changelog-plugin:2.0.0")
+    }
+}
 
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.7.20'
-    id 'org.jetbrains.intellij' version '1.10.1'     // https://github.com/JetBrains/gradle-intellij-plugin/releases
+    id 'org.jetbrains.intellij' version '1.13.2'     // https://github.com/JetBrains/gradle-intellij-plugin/releases
     id 'com.jetbrains.rdgen' version '2022.3.4'     // https://github.com/JetBrains/rd/releases
     id 'me.filippov.gradle.jvm.wrapper' version '0.14.0'
+    id 'org.jetbrains.changelog' version '2.0.0'
 }
+
+apply plugin: "org.jetbrains.changelog"
+
+import org.apache.tools.ant.taskdefs.condition.Os
 
 ext {
     isWindows = Os.isFamily(Os.FAMILY_WINDOWS)
@@ -52,7 +67,7 @@ task setBuildTool {
         if (isWindows) {
             exec {
                 executable "${rootDir}\\tools\\vswhere.exe"
-                args '-latest','-property','installationPath','-products','*'
+                args '-latest', '-property', 'installationPath', '-products', '*'
                 standardOutput = stdout
                 workingDir rootDir
             }
@@ -86,7 +101,7 @@ task testDotNet {
     doLast {
         exec {
             executable "dotnet"
-            args "test","${DotnetSolution}","--logger","GitHubActions"
+            args "test", "${DotnetSolution}", "--logger", "GitHubActions"
             workingDir rootDir
         }
     }
@@ -129,6 +144,11 @@ intellij {
     // plugins = ["uml", "com.jetbrains.ChooseRuntime:1.0.9"]
 }
 
+changelog {
+    groups = []
+    repositoryUrl = "${pluginRepositoryUrl}"
+}
+
 runIde {
     // Match Rider's default heap size of 1.5Gb (default for runIde is 512Mb)
     maxHeapSize = "1500m"
@@ -144,7 +164,7 @@ runIde {
 rdgen {
     def modelDir = new File(rootDir, "protocol/src/main/kotlin/model")
     def csOutput = new File(rootDir, "src/dotnet/${DotnetPluginId}/Rider")
-    def ktOutput = new File(rootDir, "src/rider/main/kotlin/${RiderPluginId.replace('.','/').toLowerCase()}")
+    def ktOutput = new File(rootDir, "src/rider/main/kotlin/${RiderPluginId.replace('.', '/').toLowerCase()}")
 
     verbose = true
     classpath {
@@ -172,6 +192,8 @@ rdgen {
 }
 
 patchPluginXml {
+    version = "${PluginVersion}"
+
     // TODO: See also org.jetbrains.changelog: https://github.com/JetBrains/gradle-changelog-plugin
     def changelogText = file("${rootDir}/CHANGELOG.md").text
     def changelogMatches = changelogText =~ /(?s)(-.+?)(?=##|$)/
@@ -179,6 +201,17 @@ patchPluginXml {
     changeNotes = changelogMatches.collect {
         it[1].replaceAll(/(?s)\r?\n/, "<br />\n")
     }.take(1).join('')
+
+    var start = "<!-- Plugin description -->"
+    var end = "<!-- Plugin description end -->"
+
+    // read from README.md
+    var lines = file("README.md").text.lines().toList()
+    if (!lines.containsAll([start, end])) {
+        throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
+    }
+    lines = lines.subList(lines.indexOf(start) + 1, lines.indexOf(end)).toList()
+    pluginDescription = org.jetbrains.changelog.ExtensionsKt.markdownToHTML(lines.join("\n"))
 }
 
 prepareSandbox {
@@ -186,9 +219,9 @@ prepareSandbox {
 
     def outputFolder = "${rootDir}/src/dotnet/${DotnetPluginId}/bin/${DotnetPluginId}.Rider/${BuildConfiguration}"
     def dllFiles = [
-            "$outputFolder/${DotnetPluginId}.dll",
-            "$outputFolder/${DotnetPluginId}.pdb",
-            // TODO: add additional assemblies
+        "$outputFolder/${DotnetPluginId}.dll",
+        "$outputFolder/${DotnetPluginId}.pdb",
+        // TODO: add additional assemblies
     ]
 
     dllFiles.forEach({ f ->
@@ -212,7 +245,7 @@ publishPlugin {
     doLast {
         exec {
             executable "dotnet"
-            args "nuget","push","output/${DotnetPluginId}.${version}.nupkg","--api-key","${PublishToken}","--source","https://plugins.jetbrains.com"
+            args "nuget", "push", "output/${DotnetPluginId}.${version}.nupkg", "--api-key", "${PublishToken}", "--source", "https://plugins.jetbrains.com"
             workingDir rootDir
         }
     }
