@@ -6,16 +6,15 @@
   <depends>com.intellij.modules.rider</depends>
 
   <!-- until-build not specified on purpose -->
-  <idea-version since-build="221" />
-
-  <description>
-<![CDATA[
-<p>Sample description</p>
-]]>
-  </description>
+  <idea-version since-build="221"/>
 
   <extensions defaultExtensionNs="com.intellij">
-    <applicationConfigurable groupId="language" id="RiderTools.TestOptionsPage" instance="com.github.aarcangeli.ridertools.TestOptionsPage" parentId="tools" />
+    <!-- Fold access specifier sections (public:, private:, etc) in C++ classes -->
+    <lang.foldingBuilder language="C++" implementationClass="com.github.aarcangeli.ridertools.CppFoldBuilder"/>
+
+    <!-- TODO: remove this example component -->
+    <applicationConfigurable groupId="language" id="RiderTools.TestOptionsPage"
+                             instance="com.github.aarcangeli.ridertools.TestOptionsPage" parentId="tools"/>
   </extensions>
 
 </idea-plugin>
