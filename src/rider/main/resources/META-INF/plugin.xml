@@ -14,4 +14,8 @@
 ]]>
   </description>
 
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationConfigurable groupId="language" id="RiderTools.TestOptionsPage" instance="com.github.aarcangeli.ridertools.TestOptionsPage" parentId="tools" />
+  </extensions>
+
 </idea-plugin>

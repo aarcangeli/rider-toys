@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="223.0.20221220.120928" />
     <PackageReference Include="JetBrains.Rider.SDK" Version="$(SdkVersion)" />
   </ItemGroup>
 
