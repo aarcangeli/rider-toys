@@ -194,13 +194,15 @@ rdgen {
 patchPluginXml {
     version = "${PluginVersion}"
 
-    // TODO: See also org.jetbrains.changelog: https://github.com/JetBrains/gradle-changelog-plugin
-    def changelogText = file("${rootDir}/CHANGELOG.md").text
-    def changelogMatches = changelogText =~ /(?s)(-.+?)(?=##|$)/
-
-    changeNotes = changelogMatches.collect {
-        it[1].replaceAll(/(?s)\r?\n/, "<br />\n")
-    }.take(1).join('')
+    changeNotes = provider {
+        var result
+        try {
+            result = changelog.getLatest()?.toHTML()
+        } catch (ignored) {
+            result = changelog.getUnreleased()?.toHTML()
+        }
+        return result
+    }
 
     var start = "<!-- Plugin description -->"
     var end = "<!-- Plugin description end -->"
