@@ -21,3 +21,4 @@ output
 _ReSharper*
 _dotTrace*
 .name
+packages

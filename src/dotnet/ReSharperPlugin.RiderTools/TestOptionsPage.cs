@@ -10,13 +10,10 @@ namespace ReSharperPlugin.RiderTools;
 public class TestOptionsPage : BeSimpleOptionsPage
 {
     public TestOptionsPage(Lifetime lifetime, OptionsPageContext optionsPageContext,
-        OptionsSettingsSmartContext optionsSettingsSmartContext,
-        TestComponent testComponent,
-        TestSolutionComponent solutionComponent = null) : base(
+        OptionsSettingsSmartContext optionsSettingsSmartContext) : base(
         lifetime, optionsPageContext,
         optionsSettingsSmartContext)
     {
         AddCommentText("Example comment");
-        AddText(solutionComponent != null ? "Solution component is not null" : "Solution component is null");
     }
 }

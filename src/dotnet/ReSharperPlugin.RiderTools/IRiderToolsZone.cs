@@ -7,7 +7,7 @@ namespace ReSharperPlugin.RiderTools
 {
     [ZoneDefinition]
     // [ZoneDefinitionConfigurableFeature("Title", "Description", IsInProductSection: false)]
-    public interface IRiderToolsZone : IZone
+    public interface IRiderToolsZone : IZone, IRequire<ILanguageCppZone>
     {
     }
 }
