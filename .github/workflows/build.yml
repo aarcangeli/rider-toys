@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
-        if: ${{ always() }}
+        if: ${{ !cancelled() }}
         with:
           name: ${{ github.event.repository.name }}.CI.${{ github.ref_name }}
           path: output
