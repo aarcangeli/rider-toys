@@ -29,8 +29,10 @@ namespace ReSharperPlugin.RiderTools.iwyu;
  */
 public class UsedIncludesProcessor : IRecursiveElementProcessor
 {
+    public delegate void IncludeProcessor(CppCompositeNode element, CppFileLocation location);
+
     private readonly string _fileFullPath;
-    private readonly ISet<CppFileLocation> _result;
+    private readonly IncludeProcessor _processor;
 
     /**
      * Collects all includes used in a file.
@@ -39,14 +41,19 @@ public class UsedIncludesProcessor : IRecursiveElementProcessor
     public static List<CppFileLocation> CollectUsedIncludes(CppFile file)
     {
         ISet<CppFileLocation> result = new HashSet<CppFileLocation>();
-        file.ProcessDescendants(new UsedIncludesProcessor(file.File.FullPath, result));
+        ProcessUsedIncludes(file, (_, location) => result.Add(location));
         return result.ToList();
     }
 
-    private UsedIncludesProcessor(string fileFullPath, ISet<CppFileLocation> result)
+    public static void ProcessUsedIncludes(CppFile file, IncludeProcessor processor)
     {
-        _fileFullPath = fileFullPath;
-        _result = result;
+        file.ProcessDescendants(new UsedIncludesProcessor(file, processor));
+    }
+
+    private UsedIncludesProcessor(CppFile file, IncludeProcessor processor)
+    {
+        _fileFullPath = file.File.FullPath;
+        _processor = processor;
     }
 
     public bool ProcessingIsFinished => false;
@@ -55,7 +62,7 @@ public class UsedIncludesProcessor : IRecursiveElementProcessor
     {
         switch (element)
         {
-            case ImportDirective:
+            case ICppImportDirective:
             case MacroDefinition:
             case MacroReference:
                 return false;
@@ -79,26 +86,27 @@ public class UsedIncludesProcessor : IRecursiveElementProcessor
             {
                 foreach (var part in entity.SymbolParts)
                 {
-                    ProcessLocation(part.Location);
+                    ProcessLocation(reference, part.Location);
                 }
             }
         }
 
         if (element is MacroCall macroCall && macroCall.IsTopLevel())
         {
-            var macro = macroCall.MacroReferenceNode?.GetReferencedSymbol();;
+            var macro = macroCall.MacroReferenceNode?.GetReferencedSymbol();
+
             if (macro != null)
             {
-                ProcessLocation(macro.Location);
+                ProcessLocation(macroCall, macro.Location);
             }
         }
     }
 
-    private void ProcessLocation(CppSymbolLocation partLocation)
+    private void ProcessLocation(CppCompositeNode element, CppSymbolLocation partLocation)
     {
         if (_fileFullPath != partLocation.ContainingFile.FullPath)
         {
-            _result.Add(partLocation.ContainingFile);
+            _processor(element, partLocation.ContainingFile);
         }
     }
 
