@@ -28,6 +28,9 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ runner.os }}-Build-${{ hashFiles('gradlew', 'src/dotnet/*/*.csproj', 'src/dotnet/*.props', 'gradle-wrapper.properties') }}
 
+      - name: Diagnostics
+        run: dotnet --version
+
       - name: Build Plugin
         run: ./gradlew :buildPlugin --no-daemon
 
