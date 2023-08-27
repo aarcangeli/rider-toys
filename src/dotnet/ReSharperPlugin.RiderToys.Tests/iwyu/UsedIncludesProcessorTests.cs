@@ -11,9 +11,9 @@ using JetBrains.ReSharper.Psi.Cpp.Tree;
 using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.TestFramework;
 using NUnit.Framework;
-using ReSharperPlugin.RiderTools.iwyu;
+using ReSharperPlugin.RiderToys.iwyu;
 
-namespace ReSharperPlugin.RiderTools.Tests.iwyu;
+namespace ReSharperPlugin.RiderToys.Tests.iwyu;
 
 [TestFileExtension(".cpp")]
 public class UsedIncludesProcessorTests : BaseTestWithSingleProject

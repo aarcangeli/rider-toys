@@ -16,7 +16,7 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.TextControl;
 using JetBrains.Util;
 
-namespace ReSharperPlugin.RiderTools.iwyu;
+namespace ReSharperPlugin.RiderToys.iwyu;
 
 [StaticSeverityHighlighting(Severity.INFO,
     typeof(HighlightingGroupIds.IdentifierHighlightings),

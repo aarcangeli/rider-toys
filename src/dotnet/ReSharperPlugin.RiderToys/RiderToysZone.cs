@@ -3,11 +3,11 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 
-namespace ReSharperPlugin.RiderTools
+namespace ReSharperPlugin.RiderToys
 {
     [ZoneDefinition]
     // [ZoneDefinitionConfigurableFeature("Title", "Description", IsInProductSection: false)]
-    public interface IRiderToolsZone : IZone, IRequire<ILanguageCppZone>
+    public interface IRiderToysZone : IZone, IRequire<ILanguageCppZone>
     {
     }
 }

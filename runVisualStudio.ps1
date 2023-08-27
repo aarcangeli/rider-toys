@@ -1,5 +1,5 @@
 Param(
-    $RootSuffix = "RiderTools",
+    $RootSuffix = "RiderToys",
     $Version = "9999.0.0"
 )
 

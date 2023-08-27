@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Psi.Cpp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
-namespace ReSharperPlugin.RiderTools.iwyu;
+namespace ReSharperPlugin.RiderToys.iwyu;
 
 public class IwyuIncludeUtils
 {

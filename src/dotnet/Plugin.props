@@ -3,14 +3,14 @@
   <PropertyGroup>
     <SdkVersion>2022.3.1</SdkVersion>
 
-    <Title>RiderTools</Title>
+    <Title>RiderToys</Title>
     <Description>Generic tools for Rider and Unreal Engine</Description>
 
     <Authors>Alessandro Arcangeli</Authors>
     <Copyright>Copyright $([System.DateTime]::Now.Year) Alessandro Arcangeli</Copyright>
     <PackageTags>resharper plugin</PackageTags>
 
-    <PackageProjectUrl>https://github.com/aarcangeli/rider-tools</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/aarcangeli/rider-toys</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl></PackageIconUrl>
   </PropertyGroup>

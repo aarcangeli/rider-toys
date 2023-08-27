@@ -1,4 +1,4 @@
-package com.github.aarcangeli.ridertools
+package com.github.aarcangeli.ridertoys
 
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingDescriptor

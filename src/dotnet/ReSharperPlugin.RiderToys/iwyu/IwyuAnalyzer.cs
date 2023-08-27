@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi.Cpp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace ReSharperPlugin.RiderTools.iwyu;
+namespace ReSharperPlugin.RiderToys.iwyu;
 
 [ElementProblemAnalyzer(ElementTypes: new[] { typeof(CppFile) },
     HighlightingTypes = new[] { typeof(RecomputeIncludesHighlighting) })]

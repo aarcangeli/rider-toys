@@ -4,9 +4,9 @@ using JetBrains.Application.UI.Options.OptionsDialog;
 using JetBrains.IDE.UI.Options;
 using JetBrains.Lifetimes;
 
-namespace ReSharperPlugin.RiderTools;
+namespace ReSharperPlugin.RiderToys;
 
-[OptionsPage("RiderTools.TestOptionsPage", "My Option Name", null)]
+[OptionsPage("RiderToys.TestOptionsPage", "My Option Name", null)]
 public class TestOptionsPage : BeSimpleOptionsPage
 {
     public TestOptionsPage(Lifetime lifetime, OptionsPageContext optionsPageContext,

@@ -9,14 +9,14 @@ using NUnit.Framework;
 
 [assembly: Apartment(ApartmentState.STA)]
 
-namespace ReSharperPlugin.RiderTools.Tests
+namespace ReSharperPlugin.RiderToys.Tests
 {
     [ZoneDefinition]
-    public class RiderToolsTestEnvironmentZone : ITestsEnvZone, IRequire<PsiFeatureTestZone>, IRequire<IRiderToolsZone> { }
+    public class RiderToysTestEnvironmentZone : ITestsEnvZone, IRequire<PsiFeatureTestZone>, IRequire<IRiderToysZone> { }
 
     [ZoneMarker]
-    public class ZoneMarker : IRequire<ICodeEditingZone>, IRequire<ILanguageCSharpZone>, IRequire<RiderToolsTestEnvironmentZone> { }
+    public class ZoneMarker : IRequire<ICodeEditingZone>, IRequire<ILanguageCSharpZone>, IRequire<RiderToysTestEnvironmentZone> { }
 
     [SetUpFixture]
-    public class RiderToolsTestsAssembly : ExtensionTestEnvironmentAssembly<RiderToolsTestEnvironmentZone> { }
+    public class RiderToysTestsAssembly : ExtensionTestEnvironmentAssembly<RiderToysTestEnvironmentZone> { }
 }

@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Psi.Cpp.Symbols;
 using JetBrains.ReSharper.Psi.Cpp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace ReSharperPlugin.RiderTools.iwyu;
+namespace ReSharperPlugin.RiderToys.iwyu;
 
 /**
  * Collects the full paths of all symbols used in a file.

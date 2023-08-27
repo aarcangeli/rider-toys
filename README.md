@@ -1,6 +1,6 @@
-# RiderTools for Rider and ReSharper
+# RiderToys Plugin
 
-[![Build](https://github.com/aarcangeli/rider-tools/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/aarcangeli/rider-tools/actions/workflows/build.yml)
+[![Build](https://github.com/aarcangeli/rider-toys/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/aarcangeli/rider-toys/actions/workflows/build.yml)
 
 <!-- Plugin description -->
 
@@ -18,5 +18,5 @@ Features:
 
 - Manually:
 
-  Download the [latest release](https://github.com/aarcangeli/rider-tools/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/aarcangeli/rider-toys/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>

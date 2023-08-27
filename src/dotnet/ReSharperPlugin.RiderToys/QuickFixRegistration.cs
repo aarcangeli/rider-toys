@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using JetBrains.Application;
 using JetBrains.Lifetimes;
 using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using ReSharperPlugin.RiderTools.iwyu;
+using ReSharperPlugin.RiderToys.iwyu;
 
-namespace ReSharperPlugin.RiderTools;
+namespace ReSharperPlugin.RiderToys;
 
 [ShellComponent]
 public class QuickFixRegistration : IQuickFixesProvider
