@@ -28,6 +28,10 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ runner.os }}-Build-${{ hashFiles('gradlew', 'src/dotnet/*/*.csproj', 'src/dotnet/*.props', 'gradle-wrapper.properties') }}
 
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.x.x'
+
       - name: Diagnostics
         run: dotnet --version
 
