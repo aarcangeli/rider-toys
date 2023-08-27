@@ -43,7 +43,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: ${{ github.event.repository.name }}.CI
-          path: output-dist
+          path: output-dist/ReSharperPlugin.RiderToys
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
