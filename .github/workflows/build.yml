@@ -28,6 +28,13 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ runner.os }}-Build-${{ hashFiles('gradlew', 'src/dotnet/*/*.csproj', 'src/dotnet/*.props', 'gradle-wrapper.properties') }}
 
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.x.x'
+
+      - name: Dotnet Info
+        run: dotnet --version
+
       - name: Build Plugin
         run: ./gradlew :buildPlugin --no-daemon
 
@@ -45,7 +52,7 @@ jobs:
           name: ${{ github.event.repository.name }}.CI
           path: output-dist/ReSharperPlugin.RiderToys
 
-      - name: Upload Artifact
+      - name: Upload nupkg Artifact
         uses: actions/upload-artifact@v3
         if: ${{ !cancelled() }}
         with:
