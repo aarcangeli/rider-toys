@@ -50,7 +50,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: ${{ github.event.repository.name }}.CI
-          path: output-dist/ReSharperPlugin.RiderToys
+          path: output-dist
 
       - name: Upload nupkg Artifact
         uses: actions/upload-artifact@v3
