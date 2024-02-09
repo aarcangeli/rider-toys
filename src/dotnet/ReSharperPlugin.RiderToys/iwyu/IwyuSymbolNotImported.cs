@@ -18,7 +18,7 @@ namespace ReSharperPlugin.RiderToys.iwyu;
 [StaticSeverityHighlighting(Severity.INFO,
     typeof(HighlightingGroupIds.IdentifierHighlightings),
     Languages = "CPP",
-    AttributeId = AnalysisHighlightingAttributeIds.WARNING,
+    AttributeId = AnalysisHighlightingAttributeIds.HINT,
     OverlapResolve = OverlapResolveKind.WARNING,
     ToolTipFormatString = Message)]
 public class IwyuSymbolNotImported : IHighlighting
