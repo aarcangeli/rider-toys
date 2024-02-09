@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Cpp.Daemon;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi.Cpp.Tree;
